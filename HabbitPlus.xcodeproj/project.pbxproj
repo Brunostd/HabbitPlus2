@@ -15,6 +15,10 @@
 		C13BE20C28C6697800EBD735 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BE20B28C6697800EBD735 /* Gender.swift */; };
 		C13BE20E28C66DFA00EBD735 /* SignUpUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BE20D28C66DFA00EBD735 /* SignUpUIState.swift */; };
 		C13BE21028C66ECA00EBD735 /* SignUpViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BE20F28C66ECA00EBD735 /* SignUpViewRouter.swift */; };
+		C13E33FA28C7B07600E93424 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E33F928C7B07600E93424 /* EditTextView.swift */; };
+		C13E33FD28C7B98200E93424 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E33FC28C7B98200E93424 /* CustomTextFieldStyle.swift */; };
+		C13E340028C7D81200E93424 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E33FF28C7D81200E93424 /* String+Extensions.swift */; };
+		C13E340228C7E5A900E93424 /* LoadingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13E340128C7E5A900E93424 /* LoadingButtonView.swift */; };
 		C1516A0428B68CBE00BF007B /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1516A0328B68CBE00BF007B /* SplashViewModel.swift */; };
 		C15F411928B53AA9008D9B3A /* HabbitPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15F411828B53AA9008D9B3A /* HabbitPlusApp.swift */; };
 		C15F411D28B53AAC008D9B3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15F411C28B53AAC008D9B3A /* Assets.xcassets */; };
@@ -56,6 +60,10 @@
 		C13BE20B28C6697800EBD735 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		C13BE20D28C66DFA00EBD735 /* SignUpUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUIState.swift; sourceTree = "<group>"; };
 		C13BE20F28C66ECA00EBD735 /* SignUpViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewRouter.swift; sourceTree = "<group>"; };
+		C13E33F928C7B07600E93424 /* EditTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
+		C13E33FC28C7B98200E93424 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
+		C13E33FF28C7D81200E93424 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		C13E340128C7E5A900E93424 /* LoadingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButtonView.swift; sourceTree = "<group>"; };
 		C1516A0328B68CBE00BF007B /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C15F411528B53AA9008D9B3A /* HabbitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabbitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C15F411828B53AA9008D9B3A /* HabbitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabbitPlusApp.swift; sourceTree = "<group>"; };
@@ -170,6 +178,9 @@
 		C13BE20928C6696900EBD735 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C13E33FE28C7D7E900E93424 /* Lang */,
+				C13E33FB28C7B96A00E93424 /* Style */,
+				C13E33F828C7B05D00E93424 /* View */,
 				C13BE20A28C6696E00EBD735 /* Model */,
 			);
 			path = Common;
@@ -181,6 +192,31 @@
 				C13BE20B28C6697800EBD735 /* Gender.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C13E33F828C7B05D00E93424 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C13E33F928C7B07600E93424 /* EditTextView.swift */,
+				C13E340128C7E5A900E93424 /* LoadingButtonView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C13E33FB28C7B96A00E93424 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				C13E33FC28C7B98200E93424 /* CustomTextFieldStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		C13E33FE28C7D7E900E93424 /* Lang */ = {
+			isa = PBXGroup;
+			children = (
+				C13E33FF28C7D81200E93424 /* String+Extensions.swift */,
+			);
+			path = Lang;
 			sourceTree = "<group>";
 		};
 		C1516A0228B68C6900BF007B /* ViewModel */ = {
@@ -446,6 +482,7 @@
 				C15F414828B53CBD008D9B3A /* SplashUIState.swift in Sources */,
 				C13BE20828C6614800EBD735 /* SignUpViewModel.swift in Sources */,
 				C13BE20028C65D8300EBD735 /* HomeViewModel.swift in Sources */,
+				C13E340228C7E5A900E93424 /* LoadingButtonView.swift in Sources */,
 				C13BE21028C66ECA00EBD735 /* SignUpViewRouter.swift in Sources */,
 				C13BE20E28C66DFA00EBD735 /* SignUpUIState.swift in Sources */,
 				C15F411928B53AA9008D9B3A /* HabbitPlusApp.swift in Sources */,
@@ -456,7 +493,10 @@
 				C13BE1F828C65BC700EBD735 /* SignInViewRouter.swift in Sources */,
 				C15F414628B53AF7008D9B3A /* SplashView.swift in Sources */,
 				C1516A0428B68CBE00BF007B /* SplashViewModel.swift in Sources */,
+				C13E340028C7D81200E93424 /* String+Extensions.swift in Sources */,
 				C1F33A2628C3F9CE00B6484F /* SignInUIState.swift in Sources */,
+				C13E33FD28C7B98200E93424 /* CustomTextFieldStyle.swift in Sources */,
+				C13E33FA28C7B07600E93424 /* EditTextView.swift in Sources */,
 				C18FE5CB28B69D4C00227B23 /* SplashViewRouter.swift in Sources */,
 				C18FE5C728B69B4700227B23 /* SignInView.swift in Sources */,
 			);

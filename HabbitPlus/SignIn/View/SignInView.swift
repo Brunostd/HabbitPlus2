@@ -68,7 +68,6 @@ struct SignInView: View{
                         
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.horizontal, 32)
-                        .background(Color.white)
                         .navigationBarTitle("Login", displayMode: .inline)
                         .navigationBarHidden(navigationHidden)
                 }
@@ -79,24 +78,40 @@ struct SignInView: View{
 
 extension SignInView{
     var emailField: some View{
-        TextField("", text: $email)
-            .border(.black)
+        EditTextView(
+            text: $email,
+            placeholder: "email",
+            keyboard: .emailAddress,
+            error: "campo invalido",
+            failure: !email.isEmail(),
+            isSecure: false
+        )
     }
 }
 
 extension SignInView{
     var passwordField: some View{
-        SecureField("", text: $password)
-            .border(.orange)
+        EditTextView(
+            text: $password,
+            placeholder: "senha",
+            keyboard: .default,
+            error: "senha fraca",
+            failure: password.count < 5,
+            isSecure: true
+        )
     }
 }
 
 extension SignInView{
     var entrarButton: some View{
-        Button("Entrar"){
-            // acao do button
-            viewModel.login(email: email, password: password)
-        }
+        LoadingButtonView(
+            action: {
+                viewModel.login(email: email, password: password)
+            },
+            text: "Entrar",
+            showProgressBar: self.viewModel.uiState == SignInUIState.loading,
+            disable: !email.isEmail() || password.count < 5
+        )
     }
 }
 
