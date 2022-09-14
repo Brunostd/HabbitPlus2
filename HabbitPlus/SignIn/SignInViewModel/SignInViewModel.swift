@@ -13,6 +13,8 @@ class SignInViewModel: ObservableObject{
     private var cancellable: AnyCancellable?
     private let publisher = PassthroughSubject<Bool, Never>()
     
+    @Published var email = ""
+    @Published var password = ""
     @Published var uiState : SignInUIState = .none
     
     init(){
@@ -28,7 +30,7 @@ class SignInViewModel: ObservableObject{
         cancellable?.cancel()
     }
     
-    func login(email: String, password: String){
+    func login(){
         
         self.uiState = .loading
         

@@ -11,14 +11,6 @@ struct SignUpView: View{
     
     @ObservedObject var viewModel: SignUpViewModel
     
-    @State var fullName: String = ""
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var birthday: String = ""
-    @State var document: String = ""
-    @State var phone: String = ""
-    @State var gender: Gender = .male
-    
     var body: some View{
         ZStack{
             ScrollView(showsIndicators: false, content: {
@@ -26,7 +18,7 @@ struct SignUpView: View{
                     VStack(alignment: .leading, spacing: 8){
                         
                         Text("Cadastro")
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color("textColor"))
                             .font(Font.title.bold())
                             .padding(.bottom, 8)
                         
@@ -64,49 +56,85 @@ struct SignUpView: View{
 
 extension SignUpView{
     var fullNameField: some View{
-        TextField("", text: $fullName)
-            .border(.black)
+        EditTextView(
+            text: $viewModel.fullName,
+            placeholder: "Digite o nome completo",
+            keyboard: .default,
+            error: "Digite mais de tres caracteres",
+            failure: (viewModel.fullName.count < 3),
+            isSecure: false
+        )
     }
 }
 
 extension SignUpView{
     var emailField: some View{
-        TextField("", text: $email)
-            .border(.black)
+        EditTextView(
+            text: $viewModel.email,
+            placeholder: "Digite um e-mail",
+            keyboard: .default,
+            error: "Digite um email valido",
+            failure: !viewModel.email.isEmail(),
+            isSecure: false
+        )
     }
 }
 
 extension SignUpView{
     var passwordField: some View{
-        SecureField("", text: $password)
-            .border(.orange)
+        EditTextView(
+            text: $viewModel.password,
+            placeholder: "Digite uma senha",
+            keyboard: .default,
+            error: "Digite 6 ou mais caracteres",
+            failure: (viewModel.password.count < 6),
+            isSecure: true
+        )
     }
 }
 
 extension SignUpView{
     var birthDayField: some View{
-        TextField("", text: $birthday)
-            .border(.black)
+        EditTextView(
+            text: $viewModel.birthday,
+            placeholder: "Digite a sua data de nascimento",
+            keyboard: .default,
+            error: "Digite no formato dd/MM/yy",
+            failure: (viewModel.birthday.count != 10),
+            isSecure: false
+        )
     }
 }
 
 extension SignUpView{
     var documentField: some View{
-        TextField("", text: $document)
-            .border(.black)
+        EditTextView(
+            text: $viewModel.document,
+            placeholder: "Digite o cpf",
+            keyboard: .default,
+            error: "Digite um documento valido",
+            failure: (viewModel.document.count != 11),
+            isSecure: false
+        )
     }
 }
 
 extension SignUpView{
     var phoneField: some View{
-        TextField("", text: $phone)
-            .border(.black)
+        EditTextView(
+            text: $viewModel.phone,
+            placeholder: "Digite um numero de telefone",
+            keyboard: .default,
+            error: "Digite um numero de telefone com DD ou sem",
+            failure: (viewModel.phone.count < 10 || viewModel.phone.count >= 12),
+            isSecure: false
+        )
     }
 }
 
 extension SignUpView{
     var genderField: some View{
-        Picker("Gender", selection: $gender){
+        Picker("Gender", selection: $viewModel.gender){
             ForEach(Gender.allCases, id: \.self){ value in
                 Text(value.rawValue)
                     .tag(value)
@@ -119,9 +147,29 @@ extension SignUpView{
 
 extension SignUpView{
     var registerButton: some View{
-        Button("Realizar cadastro"){
-            // acao do button
-            viewModel.signUp()
+        LoadingButtonView(
+            action: {
+                viewModel.signUp()
+            },
+            text: "Realizar cadastro",
+            showProgressBar: self.viewModel.uiState == SignUpUIState.loading,
+            disable: !viewModel.email.isEmail() ||
+            (viewModel.fullName.count < 3) ||
+            (viewModel.password.count < 6) ||
+            (viewModel.birthday.count != 10) ||
+            (viewModel.document.count != 11) ||
+            (viewModel.phone.count < 10 || viewModel.phone.count >= 12)
+        )
+    }
+}
+
+struct SignUp_Previews: PreviewProvider{
+    static var previews: some View{
+        ForEach(ColorScheme.allCases, id: \.self) { value in
+            VStack{
+                SignUpView(viewModel: SignUpViewModel())
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .preferredColorScheme(value)
         }
     }
 }

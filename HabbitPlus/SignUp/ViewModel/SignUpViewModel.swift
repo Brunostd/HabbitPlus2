@@ -12,6 +12,14 @@ class SignUpViewModel: ObservableObject{
     
     var publisher: PassthroughSubject<Bool, Never>!
     
+    @Published var fullName: String = ""
+    @Published var email: String = ""
+    @Published var password: String = ""
+    @Published var birthday: String = ""
+    @Published var document: String = ""
+    @Published var phone: String = ""
+    @Published var gender: Gender = .male
+    
     @Published var uiState: SignUpUIState = .none
     
     func signUp(){
